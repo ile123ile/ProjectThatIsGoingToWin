@@ -27,15 +27,19 @@ public class PlayerMove : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if(_IsOnGround > 0)
+        
+        _IsOnGround -= Time.deltaTime;
+        //if(_IsOnGround < 0 )
         {
-            _IsOnGround -= Time.deltaTime;
-            int direction = Input.GetKey(_LeftKey) ? -1 : 0;
-            direction = Input.GetKey(_RightKey) ? direction + 1 : direction;
-            Vector2 force = _Speed * direction * _NormalVector;
-            force = new Vector2(force.y, -1*force.x);
-            Debug.Log(force);
-            _RigidBody.AddForce(force);
+            _NormalVector = new Vector2(0, 1);
+        }
+        int direction = Input.GetKey(_LeftKey) ? -1 : 0;
+        direction = Input.GetKey(_RightKey) ? direction + 1 : direction;
+        Vector2 force = _Speed * direction * _NormalVector;
+        force = new Vector2(force.y, -1*force.x);
+        _RigidBody.AddForce(force);
+        if (_IsOnGround > 0)
+        {
             if (Input.GetKeyDown(_UpKey))
             {
                 _RigidBody.velocity = _RigidBody.velocity + _JumpStrength * _NormalVector;
