@@ -6,12 +6,12 @@ public class Button : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        _ObjectToActivate.SetActive(true);
+        _ObjectToActivate.SetActive(!_ObjectToActivate.active);
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        _ObjectToActivate.SetActive(false);
+        _ObjectToActivate.SetActive(!_ObjectToActivate.active);
     }
 
     [SerializeField]

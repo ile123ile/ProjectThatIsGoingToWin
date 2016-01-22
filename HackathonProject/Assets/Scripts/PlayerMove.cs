@@ -27,7 +27,6 @@ public class PlayerMove : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
         _IsOnGround -= Time.deltaTime;
         //if(_IsOnGround < 0 )
         {
